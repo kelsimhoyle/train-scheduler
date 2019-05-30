@@ -11,6 +11,9 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+    // Create a variable to reference the database
+    var database = firebase.database();
+
 var trainName;
 var destination;
 var firstTrainTime;
@@ -23,4 +26,27 @@ $("#add-train-btn").on("click", function(event) {
     destination = $("#destination-input").val().trim();
     firstTrainTime = $("#time-input").val().trim();
     frequency = $("#frequency-input").val().trim();
-})
+
+    database.ref().push({
+        trainName: trainName,
+        destination: destination,
+        firstTrainTime: firstTrainTime,
+        frequency: frequency
+    });
+});
+
+database.ref().on("child_added", function(childSnapshot) {
+    // triggered once for each child on page load
+    // each time a child is added
+    var row = $("<tr>").append(
+        $("<td>").text(childSnapshot.val().trainName),
+        $("<td>").text(childSnapshot.val().destination),
+        $("<td>").text(childSnapshot.val().frequency),
+        $("<td>").text("TBD"),
+        $("<td>").text("TBD")
+    );
+    // add to the table
+    $("tbody").prepend(row);
+  }, function(errorObj) {
+    console.log(errorObj.code);
+  });
