@@ -36,12 +36,14 @@ $("#add-train-btn").on("click", function(event) {
     }
     
     if (!timeReg.test(firstTrainTime)) {
-      $("#time-input").attr('style', "border-radius: 5px; border:#FF0000 1px solid;").val("Please enter a correct time.");
+      $("#time-alert").show();
+      $("#time-input").attr('style', "border-radius: 5px; border:#FF0000 1px solid;");
       return false;
     } 
 
     if (!numReg.test(frequency)) {
-      $("#frequency-input").attr('style', "border-radius: 5px; border:#FF0000 1px solid;").val("Please enter a correct number.");
+      $("#number-alert").show();
+      $("#frequency-input").attr('style', "border-radius: 5px; border:#FF0000 1px solid;");
       return false;
     }
 
@@ -51,7 +53,7 @@ $("#add-train-btn").on("click", function(event) {
         firstTrainTime: firstTrainTime,
         frequency: frequency
     });
-
+    $("#time-alert, #number-alert").hide();
     $("#train-name-input, #destination-input, #time-input, #frequency-input").val("").removeAttr("style");
 });
 
@@ -78,3 +80,5 @@ database.ref().on("child_added", function(childSnapshot) {
   }, function(errorObj) {
     console.log(errorObj.code);
   });
+
+  $("#time-alert, #number-alert").hide();

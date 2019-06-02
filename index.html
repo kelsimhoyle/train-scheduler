@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Train Scheduler</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/yeti/bootstrap.min.css" rel="stylesheet" integrity="sha384-w6tc0TXjTUnYHwVwGgnYyV12wbRoJQo9iMlC2KdkdmVvntGgzT9jvqNEF/uKaF4m" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/superhero/bootstrap.min.css" rel="stylesheet" integrity="sha384-LS4/wo5Z/8SLpOLHs0IbuPAGOWTx30XSoZJ8o7WKH0UJhRpjXXTpODOjfVnNjeHu" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <!-- Firebase References -->
   <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
@@ -19,7 +20,7 @@
 <body>
     <div class="container">
         <div class="jumbotron">
-            <h1>Train Schedule</h1>
+            <h1>Train Scheduler</h1>
         </div>
         <!-- Current Train Schedule -->
         <div class="card mb-4">
@@ -56,10 +57,12 @@
                     </div>
                     <div class="form-group">
                         <label for="time-input">First Train Time(HH:mm - Military Time)</label>
+                        <p id="time-alert">Please enter a correct time.</p>
                         <input class="form-control" id="time-input" type="text">
                     </div>
                     <div class="form-group">
                         <label for="frequency-input">Frequency (min)</label>
+                        <p id="number-alert" >Please enter a correct number.</p>
                         <input class="form-control" id="frequency-input" type="text">
                     </div>
                     <button class="btn btn-primary float-right" id="add-train-btn">Submit</button>
